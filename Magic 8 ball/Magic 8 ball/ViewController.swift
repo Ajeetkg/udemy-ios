@@ -10,14 +10,27 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var askMeImage: UIImageView!
+    let askMeImageArray = ["ball1", "ball2", "ball3", "ball4", "ball5"];
+    let askMeIndex: Int = 0;
+    
+    @IBOutlet weak var askMeImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    @IBAction func askMe(_ sender: Any) {
+    @IBAction func askMePressed(_ sender: Any) {
+        changeAskMeImage();
+    }
+    
+    func changeAskMeImage() {
+        let randomIndex = Int.random(in: 0 ... 4);
+        askMeImageView.image = UIImage(named: askMeImageArray[randomIndex]);
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        changeAskMeImage();
     }
     
 }
